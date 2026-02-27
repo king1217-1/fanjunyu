@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>扫雷网页小游戏</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-bg-pattern">
+        <!-- 四角祥云装饰 -->
+        <div class="corner-cloud corner-cloud-tl"></div>
+        <div class="corner-cloud corner-cloud-tr"></div>
+        <div class="corner-cloud corner-cloud-bl"></div>
+        <div class="corner-cloud corner-cloud-br"></div>
+
+        <div class="app-container app-container-chinese">
+            <header class="app-header app-header-chinese">
+                <div class="app-header-title-wrap">
+                    <h1>国风扫雷</h1>
+                    <span class="app-header-subtitle">风起云涌 · 一念之间 · 扫清尘世埋伏雷</span>
+                </div>
+            </header>
+
+            <div class="poem-strip">
+                <span class="poem-main">江山如画 · 河山万里</span>
+                <span class="poem-sub">落日长空 · 大雁南归 · 鹤影相随</span>
+            </div>
+
+            <section class="control-panel control-panel-chinese">
+                <div class="control-group">
+                    <label for="difficulty">难度：</label>
+                    <select id="difficulty">
+                        <option value="easy">1. 简单（5 × 5）</option>
+                        <option value="normal" selected>2. 普通（9 × 9）</option>
+                        <option value="hard">3. 困难（17 × 17）</option>
+                        <option value="custom">4. 自定义（最大 500 × 500）</option>
+                    </select>
+                </div>
+
+                <div class="control-group custom-size" id="custom-size-panel">
+                    <label>自定义行列：</label>
+                    <input type="number" id="custom-rows" min="1" max="500" value="10" /> 行
+                    <input type="number" id="custom-cols" min="1" max="500" value="10" /> 列
+                </div>
+
+                <div class="control-group">
+                    <button id="start-btn">开 局</button>
+                </div>
+
+                <div class="status-group status-group-chinese">
+                    <span>计时：<span id="timer">0.0</span> 秒</span>
+                    <span>剩余雷数：<span id="mines-left">0</span></span>
+                </div>
+            </section>
+
+            <main class="game-area game-area-chinese">
+                <div class="game-area-inner">
+                    <!-- 鹤与山水剪影 -->
+                    <div class="crane-landscape">
+                        <div class="goose-flock">
+                            <div class="goose"></div>
+                            <div class="goose"></div>
+                            <div class="goose"></div>
+                            <div class="goose"></div>
+                        </div>
+                        <div class="sky-clouds">
+                            <div class="sky-cloud sky-cloud-1"></div>
+                            <div class="sky-cloud sky-cloud-2"></div>
+                            <div class="sky-cloud sky-cloud-3"></div>
+                            <div class="sky-cloud sky-cloud-4"></div>
+                            <div class="sky-cloud sky-cloud-5"></div>
+                            <div class="sky-cloud sky-cloud-6"></div>
+                            <div class="sky-cloud sky-cloud-7"></div>
+                        </div>
+                        <div class="crane-figure"></div>
+                        <div class="mountain-range"></div>
+                        <div class="sunset-orb"></div>
+                    </div>
+                    <aside class="game-side-banner">
+                        <div class="banner-text-main">风雷阵</div>
+                        <div class="banner-text-sub">扫尽心中雷</div>
+                    </aside>
+                    <div class="game-main-panel">
+                        <div id="message" class="game-message"></div>
+                        <div id="game-board" class="board board-chinese"></div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!-- 胜利音效占位（请自行放入 victory.mp3 文件） -->
+    <audio id="victory-sound" src="victory.mp3" preload="auto"></audio>
+
+    <script src="script.js"></script>
+</body>
+</html>

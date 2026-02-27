@@ -1,0 +1,748 @@
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: "PingFang SC", "Microsoft Yahei", "Hiragino Sans GB", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    /* 落日黄调主色，偏山水宣纸感 */
+    background:
+        radial-gradient(circle at top, #facc15, #713f12 55%, #1f2937 100%);
+    color: #fefce8;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 32px 24px;
+}
+
+/* 整体国风底纹：仿宣纸+暗色渐变 */
+.app-bg-pattern {
+    position: relative;
+    width: 100%;
+    max-width: 1120px;
+    padding: 2px;
+    border-radius: 24px;
+    background:
+        radial-gradient(circle at 0 0, rgba(250, 250, 210, 0.12), transparent 60%),
+        radial-gradient(circle at 100% 100%, rgba(250, 250, 210, 0.08), transparent 60%),
+        linear-gradient(135deg, #451a03, #020617);
+    box-shadow:
+        0 40px 90px rgba(0, 0, 0, 0.95),
+        0 0 0 1px rgba(148, 163, 184, 0.32);
+}
+
+/* 四角祥云，烘托山水气氛 */
+.corner-cloud {
+    position: absolute;
+    width: 120px;
+    height: 120px;
+    pointer-events: none;
+    opacity: 0.9;
+    background-image: radial-gradient(circle at 20% 20%, rgba(250, 250, 250, 0.7), transparent 60%);
+    filter: blur(6px) drop-shadow(0 0 12px rgba(250, 250, 250, 0.6));
+    mix-blend-mode: screen;
+}
+
+.corner-cloud-tl {
+    top: -20px;
+    left: -10px;
+}
+
+.corner-cloud-tr {
+    top: -20px;
+    right: -10px;
+    transform: scaleX(-1);
+}
+
+.corner-cloud-bl {
+    bottom: -20px;
+    left: -10px;
+    transform: scaleY(-1);
+}
+
+.corner-cloud-br {
+    bottom: -20px;
+    right: -10px;
+    transform: scale(-1, -1);
+}
+
+.app-container {
+    width: 100%;
+    max-width: 1120px;
+    background:
+        repeating-linear-gradient(
+            -45deg,
+            rgba(255, 255, 255, 0.04),
+            rgba(255, 255, 255, 0.04) 6px,
+            transparent 6px,
+            transparent 12px
+        ),
+        radial-gradient(circle at top, #292524, #0f172a);
+    border-radius: 20px;
+    padding: 28px 28px 32px;
+    border: 1px solid rgba(248, 250, 252, 0.06);
+    position: relative;
+    overflow: hidden;
+}
+
+/* 中国风边框装饰（四角纹样） */
+.app-container-chinese::before,
+.app-container-chinese::after {
+    content: "";
+    position: absolute;
+    inset: 12px;
+    border-radius: 14px;
+    border: 1px solid rgba(248, 250, 252, 0.06);
+    pointer-events: none;
+}
+
+.app-container-chinese::after {
+    inset: 18px;
+    border-radius: 10px;
+    border: 1px solid rgba(248, 250, 252, 0.03);
+}
+
+.app-header {
+    margin-bottom: 18px;
+    text-align: center;
+}
+
+.app-header-chinese {
+    position: relative;
+    padding-bottom: 12px;
+}
+
+.app-header-chinese::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    transform: translateX(-50%);
+    width: 220px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #facc15, transparent);
+    box-shadow: 0 0 16px rgba(250, 204, 21, 0.55);
+}
+
+.app-header-title-wrap {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    padding: 10px 22px;
+    border-radius: 999px;
+    border: 1px solid rgba(250, 204, 21, 0.7);
+    background: radial-gradient(circle at top, rgba(248, 250, 252, 0.06), rgba(15, 23, 42, 0.9));
+    box-shadow:
+        0 12px 30px rgba(0, 0, 0, 0.7),
+        0 0 20px rgba(250, 204, 21, 0.25);
+}
+
+.app-header h1 {
+    font-size: 38px;
+    letter-spacing: 0.3em;
+    text-indent: 0.3em;
+    color: #fef9c3;
+    text-shadow:
+        0 0 18px rgba(250, 204, 21, 0.9),
+        0 0 32px rgba(250, 250, 250, 0.45);
+    font-family: "STKaiti", "KaiTi", "FZKai-Z03", "PingFang SC", "Microsoft Yahei", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+.app-header-subtitle {
+    font-size: 12px;
+    letter-spacing: 0.18em;
+    text-indent: 0.18em;
+    color: #e5e7eb;
+    opacity: 0.9;
+}
+
+/* 题签诗句条，增强“大好河山”意境 */
+.poem-strip {
+    margin-top: 10px;
+    margin-bottom: 6px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+    font-family: "STKaiti", "KaiTi", "FZKai-Z03", "PingFang SC", "Microsoft Yahei", system-ui;
+    color: #fef9c3;
+    font-size: 14px;
+}
+
+.poem-main {
+    letter-spacing: 0.24em;
+    text-indent: 0.24em;
+}
+
+.poem-sub {
+    font-size: 12px;
+    opacity: 0.86;
+}
+
+.app-header-seal {
+    margin-top: 4px;
+    padding: 2px 8px;
+    border-radius: 4px;
+    border: 1px solid rgba(248, 113, 113, 0.9);
+    color: #fecaca;
+    font-size: 13px;
+    letter-spacing: 0.2em;
+    text-indent: 0.2em;
+    background: radial-gradient(circle at center, rgba(127, 29, 29, 0.96), rgba(69, 10, 10, 0.98));
+    box-shadow:
+        0 0 10px rgba(248, 113, 113, 0.7),
+        inset 0 0 4px rgba(15, 23, 42, 0.9);
+}
+
+.control-panel {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px 24px;
+    align-items: center;
+    margin-bottom: 18px;
+    padding: 12px 18px;
+    border-radius: 18px;
+    background: radial-gradient(circle at top left, rgba(250, 250, 249, 0.06), transparent 60%);
+    border: 1px solid rgba(148, 163, 184, 0.5);
+}
+
+.control-panel-chinese {
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+}
+
+.control-group {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    color: #e5e7eb;
+}
+
+.control-group label {
+    white-space: nowrap;
+}
+
+.custom-size {
+    display: none;
+}
+
+select,
+input[type="number"] {
+    background: rgba(15, 23, 42, 0.85);
+    border: 1px solid rgba(148, 163, 184, 0.7);
+    color: #e5e7eb;
+    border-radius: 8px;
+    padding: 4px 8px;
+    font-size: 14px;
+}
+
+input[type="number"] {
+    width: 72px;
+}
+
+button {
+    border: none;
+    border-radius: 999px;
+    padding: 8px 16px;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    cursor: pointer;
+    background: radial-gradient(circle at top, #facc15, #b45309);
+    color: #1f2937;
+    box-shadow:
+        0 10px 28px rgba(185, 28, 28, 0.65),
+        0 0 18px rgba(248, 250, 252, 0.18);
+    transition: transform 0.1s ease, box-shadow 0.1s ease, filter 0.1s ease;
+}
+
+button:hover {
+    filter: brightness(1.05);
+    transform: translateY(-1px);
+    box-shadow: 0 10px 24px rgba(16, 185, 129, 0.45);
+}
+
+button:active {
+    transform: translateY(0);
+    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+}
+
+.status-group {
+    display: flex;
+    gap: 16px;
+    font-size: 15px;
+    margin-left: auto;
+    color: #e5e7eb;
+}
+
+.status-group span span {
+    font-weight: 600;
+    color: #facc15;
+}
+
+.game-area {
+    margin-top: 20px;
+}
+
+.game-area-inner {
+    display: flex;
+    gap: 24px;
+    align-items: stretch;
+}
+
+.game-side-banner {
+    width: 64px;
+    border-radius: 12px;
+    background:
+        linear-gradient(180deg, rgba(217, 119, 6, 0.96), rgba(124, 45, 18, 0.98));
+    border: 1px solid rgba(250, 250, 210, 0.4);
+    box-shadow:
+        0 16px 32px rgba(0, 0, 0, 0.8),
+        0 0 16px rgba(59, 130, 246, 0.6);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 4px;
+    position: relative;
+    overflow: hidden;
+}
+
+.game-side-banner::before,
+.game-side-banner::after {
+    content: "";
+    position: absolute;
+    inset: 4px;
+    border-radius: 10px;
+    border: 1px solid rgba(248, 250, 252, 0.18);
+    pointer-events: none;
+}
+
+.game-side-banner::after {
+    inset: 9px 10px;
+    border-radius: 8px;
+    border-style: double;
+    border-width: 2px;
+    border-color: rgba(248, 250, 252, 0.22);
+}
+
+.banner-text-main {
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    font-family: "STKaiti", "KaiTi", "FZKai-Z03", "PingFang SC", "Microsoft Yahei", system-ui;
+    font-size: 18px;
+    letter-spacing: 0.2em;
+    text-indent: 0.2em;
+    color: #fef9c3;
+    text-shadow:
+        0 0 12px rgba(250, 250, 210, 0.9),
+        0 0 30px rgba(248, 250, 252, 0.6);
+}
+
+.banner-text-sub {
+    margin-top: 6px;
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    font-size: 11px;
+    letter-spacing: 0.16em;
+    text-indent: 0.16em;
+    color: #e5e7eb;
+    opacity: 0.95;
+}
+
+.game-main-panel {
+    flex: 1;
+    padding: 14px 16px 12px;
+    border-radius: 18px;
+    background:
+        radial-gradient(circle at top left, rgba(248, 250, 252, 0.04), transparent 70%),
+        radial-gradient(circle at bottom right, rgba(15, 23, 42, 0.7), rgba(15, 23, 42, 0.98));
+    border: 1px solid rgba(148, 163, 184, 0.55);
+    box-shadow:
+        0 24px 40px rgba(0, 0, 0, 0.85),
+        inset 0 0 20px rgba(15, 23, 42, 0.9);
+}
+
+/* 鹤与山水剪影区域：落日下的大好河山 */
+.crane-landscape {
+    position: relative;
+    flex: 0 0 120px;
+    border-radius: 16px;
+    margin-right: 4px;
+    background:
+        radial-gradient(circle at 50% 0%, rgba(250, 204, 21, 0.9), rgba(248, 250, 252, 0) 55%),
+        linear-gradient(180deg, rgba(248, 250, 252, 0.06), rgba(15, 23, 42, 0.98));
+    border: 1px solid rgba(250, 250, 210, 0.5);
+    overflow: hidden;
+    box-shadow:
+        0 18px 36px rgba(0, 0, 0, 0.8),
+        0 0 20px rgba(250, 204, 21, 0.4);
+}
+
+/* 大雁南飞：用“雁”字笔意做剪影，更国风 */
+.goose-flock {
+    position: absolute;
+    top: 30px;
+    left: 6px;
+    width: 92px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 4px;
+    opacity: 0.95;
+}
+
+.goose {
+    position: relative;
+    width: 20px;
+    height: 16px;
+    background-image: url("images/goose.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    filter: drop-shadow(0 0 4px rgba(248, 250, 252, 0.9));
+    transform: rotate(-18deg);
+}
+
+.goose:nth-child(2) {
+    transform: translateY(-4px) translateX(2px) rotate(-15deg) scale(0.96);
+}
+
+.goose:nth-child(3) {
+    transform: translateY(2px) translateX(4px) rotate(-20deg) scale(0.9);
+}
+
+.goose:nth-child(4) {
+    transform: translateY(-6px) translateX(6px) rotate(-14deg) scale(0.86);
+}
+
+/* 落日余晖中的云层，位于太阳正下方，多层分布 */
+.sky-clouds {
+    position: absolute;
+    top: 66px; /* 从太阳下缘开始 */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 150px;
+    height: 86px; /* 向下延申更多空间 */
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    justify-content: center;
+    pointer-events: none;
+}
+
+.sky-cloud {
+    position: relative;
+    height: 20px;
+    border-radius: 999px;
+    background:
+        radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.96), rgba(248, 250, 252, 0.3)),
+        radial-gradient(circle at 70% 70%, rgba(254, 249, 195, 0.9), rgba(248, 204, 21, 0.5));
+    box-shadow:
+        0 0 16px rgba(250, 250, 250, 0.9),
+        0 0 26px rgba(250, 204, 21, 0.7);
+    opacity: 0.9;
+}
+
+.sky-cloud-1 {
+    width: 70px;
+    height: 22px;
+    transform: translateY(0) scale(1);
+}
+
+.sky-cloud-2 {
+    width: 46px;
+    height: 18px;
+    transform: translate(-18px, 6px) scale(0.94);
+    opacity: 0.87;
+}
+
+.sky-cloud-3 {
+    width: 52px;
+    height: 20px;
+    transform: translate(16px, 10px) scale(0.9);
+    opacity: 0.84;
+}
+
+.sky-cloud-4 {
+    width: 64px;
+    height: 20px;
+    transform: translate(-10px, 22px) scale(0.96);
+}
+
+.sky-cloud-5 {
+    width: 40px;
+    height: 18px;
+    transform: translate(22px, 28px) scale(0.9);
+    opacity: 0.82;
+}
+
+.sky-cloud-6 {
+    width: 54px;
+    height: 19px;
+    transform: translate(-6px, 42px) scale(0.9);
+    opacity: 0.8;
+}
+
+.sky-cloud-7 {
+    width: 34px;
+    height: 16px;
+    transform: translate(18px, 50px) scale(0.86);
+    opacity: 0.78;
+}
+
+.sunset-orb {
+    position: absolute;
+    top: 6px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 56px;
+    height: 56px;
+    border-radius: 999px;
+    background:
+        radial-gradient(circle at 30% 20%, #fef9c3, #f97316 60%, rgba(127, 29, 29, 0.9) 100%);
+    box-shadow:
+        0 0 28px rgba(250, 204, 21, 0.85),
+        0 0 48px rgba(248, 113, 113, 0.65);
+}
+
+.mountain-range {
+    position: absolute;
+    bottom: 0;
+    left: -10%;
+    width: 120%;
+    height: 52%;
+    background:
+        radial-gradient(circle at 10% 0%, rgba(15, 23, 42, 0.4), transparent 55%),
+        radial-gradient(circle at 80% 10%, rgba(15, 23, 42, 0.5), transparent 60%),
+        linear-gradient(180deg, #1e293b 0%, #020617 70%);
+    clip-path: polygon(0 60%, 15% 40%, 30% 55%, 45% 35%, 60% 50%, 75% 30%, 90% 55%, 100% 40%, 100% 100%, 0 100%);
+    opacity: 0.98;
+}
+
+.crane-figure {
+    position: absolute;
+    bottom: 18px;
+    right: 14px;
+    width: 42px;
+    height: 42px;
+    background-image: url("images/crane.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    filter: drop-shadow(0 0 10px rgba(248, 250, 252, 0.85));
+}
+
+.crane-figure::before {
+    content: "鹤";
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: "STKaiti", "KaiTi", "FZKai-Z03", "PingFang SC", "Microsoft Yahei", system-ui;
+    font-size: 18px;
+    color: rgba(248, 250, 252, 0.9);
+    text-shadow: 0 0 12px rgba(248, 250, 252, 0.9);
+    mix-blend-mode: screen;
+}
+
+.game-message {
+    min-height: 24px;
+    margin-bottom: 8px;
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.game-message.success {
+    color: #22c55e;
+}
+
+.game-message.fail {
+    color: #f97316;
+}
+
+.board {
+    display: grid;
+    justify-content: center;
+    gap: 2px;
+    padding: 12px;
+    border-radius: 14px;
+    background:
+        radial-gradient(circle at top, rgba(250, 250, 210, 0.15), transparent 65%),
+        linear-gradient(135deg, rgba(30, 64, 175, 0.9), rgba(15, 23, 42, 0.98));
+    border: 1px solid rgba(250, 250, 210, 0.7);
+    max-height: 640px;
+    overflow: auto;
+}
+
+.cell {
+    width: 32px;
+    height: 32px;
+    border-radius: 4px;
+    border: 1px solid rgba(15, 23, 42, 0.9);
+    /* 格子水墨宣纸底纹 + 轻微波纹 */
+    background:
+        radial-gradient(circle at 30% 20%, rgba(255, 255, 255, 0.06), transparent 55%),
+        radial-gradient(circle at 70% 80%, rgba(255, 255, 255, 0.04), transparent 55%),
+        repeating-radial-gradient(circle at center, rgba(15, 23, 42, 0.45), rgba(15, 23, 42, 0.45) 1px, #020617 2px, #020617 3px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    user-select: none;
+    color: #e5e7eb;
+    transition: background 0.08s ease, transform 0.05s ease, box-shadow 0.05s ease;
+}
+
+.cell:hover {
+    background:
+        radial-gradient(circle at 30% 20%, rgba(254, 249, 195, 0.18), transparent 55%),
+        radial-gradient(circle at 70% 80%, rgba(254, 249, 195, 0.14), transparent 55%),
+        repeating-radial-gradient(circle at center, rgba(15, 23, 42, 0.5), rgba(15, 23, 42, 0.5) 1px, #020617 2px, #020617 3px);
+    box-shadow: 0 0 10px rgba(250, 250, 210, 0.25);
+}
+
+.cell:active {
+    transform: translateY(1px);
+    box-shadow: none;
+}
+
+.cell.revealed {
+    background:
+        radial-gradient(circle at center, rgba(254, 249, 195, 0.08), #020617 80%);
+    color: #e5e7eb;
+    cursor: default;
+    box-shadow: inset 0 0 6px rgba(15, 23, 42, 0.9);
+}
+
+.cell.revealed:hover {
+    box-shadow: inset 0 0 6px rgba(15, 23, 42, 0.9);
+}
+
+.cell.mine {
+    /* 地雷图标：落日余晖下的红色高亮 */
+    background: radial-gradient(circle at center, #b91c1c, #7f1d1d);
+    background-image: url("images/mine.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 70% 70%;
+}
+
+.cell.flag {
+    /* 旗帜图标：使用背景图片，同时保留文字/emoji 作为兜底 */
+    color: #facc15;
+    text-shadow: 0 0 8px rgba(250, 204, 21, 0.6);
+    background-image: url("images/flag.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 70% 70%;
+}
+
+.cell.mine-hit {
+    animation: shake 0.2s ease-in-out 0s 3;
+}
+
+/* 错误标记的“雷”（其实是安全格）：显示真实数字并用明显的红色高亮提示 */
+.cell.wrong-flag {
+    background: radial-gradient(circle at center, #7f1d1d, #450a0a);
+    color: #fecaca;
+    box-shadow: 0 0 12px rgba(248, 113, 113, 0.8);
+}
+
+@keyframes shake {
+    0% { transform: translateX(0); }
+    25% { transform: translateX(-2px); }
+    50% { transform: translateX(2px); }
+    75% { transform: translateX(-2px); }
+    100% { transform: translateX(0); }
+}
+
+.cell-number-1 { color: #60a5fa; }
+.cell-number-2 { color: #34d399; }
+.cell-number-3 { color: #fb7185; }
+.cell-number-4 { color: #a78bfa; }
+.cell-number-5 { color: #fbbf24; }
+.cell-number-6 { color: #2dd4bf; }
+.cell-number-7 { color: #e5e7eb; }
+.cell-number-8 { color: #9ca3af; }
+/* 让数字更贴近水墨山水的低饱和色调 */
+.cell.revealed.cell-number-1 { color: #38bdf8; }
+.cell.revealed.cell-number-2 { color: #22c55e; }
+.cell.revealed.cell-number-3 { color: #f97373; }
+.cell.revealed.cell-number-4 { color: #a78bfa; }
+.cell.revealed.cell-number-5 { color: #eab308; }
+.cell.revealed.cell-number-6 { color: #2dd4bf; }
+.cell.revealed.cell-number-7 { color: #e5e7eb; }
+.cell.revealed.cell-number-8 { color: #cbd5e1; }
+
+@media (max-width: 640px) {
+    body {
+        padding: 12px;
+    }
+
+    .app-container {
+        padding: 16px;
+    }
+
+    .control-panel {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .status-group {
+        margin-left: 0;
+    }
+
+    .game-area-inner {
+        flex-direction: column;
+    }
+
+    .crane-landscape {
+        flex: 0 0 auto;
+        height: 100px;
+        margin-bottom: 8px;
+        order: -1;
+    }
+
+    .game-side-banner {
+        width: 100%;
+        height: 60px;
+        flex-direction: row;
+        justify-content: center;
+        padding: 6px 10px;
+    }
+
+    .banner-text-main,
+    .banner-text-sub {
+        writing-mode: horizontal-tb;
+        text-indent: 0;
+    }
+
+    .banner-text-main {
+        font-size: 16px;
+        margin-right: 8px;
+    }
+
+    .banner-text-sub {
+        font-size: 11px;
+    }
+
+    .board {
+        padding: 8px;
+    }
+
+    .cell {
+        width: 28px;
+        height: 28px;
+    }
+}

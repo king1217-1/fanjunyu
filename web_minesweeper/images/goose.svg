@@ -1,0 +1,20 @@
+<svg width="40" height="28" viewBox="0 0 40 28" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="wing" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#0b1120" />
+      <stop offset="100%" stop-color="#020617" />
+    </linearGradient>
+  </defs>
+  <!-- ��'�jqO�U� -->
+  <g fill="url(#wing)">
+    <!-- �S -->
+    <path d="M4 16 C10 10, 20 9, 28 11 C31 12, 34 14, 36 16 C32 17, 27 18, 20 18 C12 18, 7 17, 4 16 Z" />
+    <!-- P�4 -->
+    <path d="M24 11 C25 8, 28 6, 32 6 L37 5 L36 7 L33 8 C31 9, 29 11, 28 13 Z" />
+    <!-- 
+� -->
+    <path d="M6 15 C9 9, 16 4, 25 3 C20 7, 17 11, 14 15 C11 16, 8 16, 6 15 Z" />
+    <!-- � -->
+    <path d="M8 17 C11 15, 16 14, 22 14 C19 16, 16 18, 13 19 C11 19, 9 18, 8 17 Z" />
+  </g>
+</svg>
